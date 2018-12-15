@@ -15,11 +15,11 @@ class App extends Component {
     return (
       <div className="App">
         <Router>
-          <Route exact path="/" component={HomePage} />
+          <Route exact path="/" component={HomePage} style={{backdropFilter:'blur(5px)'}}/>
           {/* <Route path="/portfolio" component={PortfolioPage} />
           <Route path="/admin" component={AdminPage} /> */}
         </Router>
-      </div>
+        </div>
     );
   }
 }
