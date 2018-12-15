@@ -27,7 +27,7 @@ const styles = theme => ({
         height: 400,
         width: '20vw',
         borderRadius: '0px 6px 6px 0px',
-        background: 'none',
+        backgroundColor: 'rgba(238,238,238,.1)',
         backdropFilter: 'blur(5px)',
     },
     button: {
