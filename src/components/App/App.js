@@ -6,8 +6,8 @@ import { HashRouter as Router, Route, Link } from "react-router-dom";
 
 // *----------* Page Components *----------*
 import HomePage from '../HomePage/HomePage';
-import PortfolioPage from '../PortfolioPage/PortfolioPage';
-import AdminPage from '../AdminPage/AdminPage'
+// import PortfolioPage from '../PortfolioPage/PortfolioPage';
+// import AdminPage from '../AdminPage/AdminPage'
 
 class App extends Component {
   // Renders the entire app on the DOM
