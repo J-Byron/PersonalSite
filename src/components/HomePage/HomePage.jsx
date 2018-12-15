@@ -46,16 +46,18 @@ class HomePage extends Component {
 
     gotoAbout = () =>{
         console.log(`Going to about`);
-        // this.props.history.push('/about')
+        this.props.history.push('/about')
+
+        // window.open('https://www.codexworld.com', '_blank');
     }
 
     gotoPortfolio = () =>{
         console.log(`Going to portfolio`);
-        // this.props.history.push('/portfolio)
+        this.props.history.push('/portfolio');
     }
     gotoContact = () =>{
         console.log(`Going to contact`);
-        // this.props.history.push('/contact')
+        this.props.history.push('/contact');
     }
 
     render() {
