@@ -3,12 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App/App.js';
 import registerServiceWorker from './registerServiceWorker';
+
+// *----------* React-Redux *----------*
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-// Provider allows us to use redux within our react app
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
-// Import saga middleware
+
+// *----------* Redux-Saga *----------*
 import createSagaMiddleware from 'redux-saga';
+import { takeEvery, call, put as dispatch } from 'redux-saga/effects'
+
+// *----------* Axios *----------*
+import Axios from 'axios';
 
 // Create the rootSaga generator function
 function* rootSaga() {
