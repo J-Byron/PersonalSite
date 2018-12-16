@@ -16,6 +16,37 @@ import { takeEvery, call, put as dispatch } from 'redux-saga/effects'
 // *----------* Axios *----------*
 import Axios from 'axios';
 
+// "id"
+// "name"
+// "description"
+// "thumbnail"
+// "website"
+// "github"
+// "date_completed"
+// "tag_id"
+
+const fakeData = [
+    {
+        id: 9,
+        name: 'Example',
+        description: 'Blah x3',
+        thumbnail: 'https://yt3.ggpht.com/a-/AN66SAyn4D2lHHaONid5n_y_ZIsyInEUOoktizKFew=s900-mo-c-c0xffffffff-rj-k-no',
+        website: 'google.com',
+        github: 'github.com',
+        date_completed: '2015-09-09',
+        tag_id: 5
+    },
+    {
+        id: 10,
+        name: 'Example',
+        description: 'Blah x9',
+        thumbnail: 'http://qnimate.com/wp-content/uploads/2014/03/images2.jpg',
+        website: 'google.com',
+        github: 'github.com',
+        date_completed: '2015-09-09',
+        tag_id: 5
+    },
+]
 // Create the rootSaga generator function
 function* rootSaga() {
 
@@ -25,7 +56,7 @@ function* rootSaga() {
 const sagaMiddleware = createSagaMiddleware();
 
 // Used to store projects returned from the server
-const projects = (state = [], action) => {
+const projects = (state = fakeData, action) => {
     switch (action.type) {
         case 'SET_PROJECTS':
             return action.payload;
@@ -57,6 +88,6 @@ const storeInstance = createStore(
 // Pass rootSaga into our sagaMiddleware
 sagaMiddleware.run(rootSaga);
 
-ReactDOM.render(<Provider store={storeInstance}><App /></Provider>, 
+ReactDOM.render(<Provider store={storeInstance}><App /></Provider>,
     document.getElementById('root'));
 registerServiceWorker();
