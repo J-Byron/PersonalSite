@@ -56,8 +56,8 @@ router.post('/', (req, res) => {
 });
 
 router.get('/', (req, res) => {
-    const queryString = `SELECT projects.name, projects.description, projects.github, projects.thumbnail, projects.website, projects.date_completed, tags.name
-    FROM projects JOIN tags ON projects.tag_id = tags.id;`;
+    const queryString = `SELECT projects.name, projects.description, projects.github, projects.thumbnail, projects.website, projects.date_completed, tags.name as tag
+    FROM projects JOIN tags ON projects.tag_id = tags.id ORDER BY projects.date_completed DESC;`;
 
     pool.query(queryString).then(result=>{
         console.log(result.rows);

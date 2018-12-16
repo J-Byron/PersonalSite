@@ -67,7 +67,7 @@ const sagaMiddleware = createSagaMiddleware();
 // *----------* REDUX *----------*
 
 // Used to store projects returned from the server
-const projects = (state = fakeData, action) => {
+const projects = (state = [], action) => {
     switch (action.type) {
         case 'SET_PROJECTS':
             return action.payload;
@@ -133,9 +133,6 @@ function* postProject(action) {
         console.log(`Error in postProject: ${error}`);
     }
 }
-
-
-
 
 // Create the rootSaga generator function
 function* rootSaga() {

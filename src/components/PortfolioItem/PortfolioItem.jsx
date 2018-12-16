@@ -96,6 +96,7 @@ class PortfolioItem extends Component {
     render() {
         const { classes } = this.props;
         const projectInfo = this.props.information;
+        console.log(projectInfo);
         return (
             <div className={classes.container}>
 

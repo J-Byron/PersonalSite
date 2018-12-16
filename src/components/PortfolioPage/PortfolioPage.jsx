@@ -46,6 +46,11 @@ const styles = theme => ({
 });
 
 class PortfolioPage extends Component {
+
+    componentWillMount(){
+        this.props.dispatch({type: 'FETCH_PROJECTS'})
+    }
+
     render() {
         const { classes } = this.props;
         const data = this.props.projects.map((information,i)=>{
