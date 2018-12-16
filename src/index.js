@@ -32,7 +32,7 @@ const fakeData = [
         description: 'Blah x3',
         thumbnail: 'https://yt3.ggpht.com/a-/AN66SAyn4D2lHHaONid5n_y_ZIsyInEUOoktizKFew=s900-mo-c-c0xffffffff-rj-k-no',
         website: 'google.com',
-        github: 'github.com',
+        github: 'https://colorhunt.co/popular',
         date_completed: '2015-09-09',
         tag: 'JS'
     },
