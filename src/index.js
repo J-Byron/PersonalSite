@@ -28,23 +28,33 @@ import Axios from 'axios';
 const fakeData = [
     {
         id: 9,
-        name: 'Example',
+        name: 'Example1',
         description: 'Blah x3',
         thumbnail: 'https://yt3.ggpht.com/a-/AN66SAyn4D2lHHaONid5n_y_ZIsyInEUOoktizKFew=s900-mo-c-c0xffffffff-rj-k-no',
         website: 'google.com',
         github: 'github.com',
         date_completed: '2015-09-09',
-        tag_id: 5
+        tag: 'JS'
     },
     {
         id: 10,
-        name: 'Example',
+        name: 'Example2',
         description: 'Blah x9',
         thumbnail: 'http://qnimate.com/wp-content/uploads/2014/03/images2.jpg',
         website: 'google.com',
         github: 'github.com',
         date_completed: '2015-09-09',
-        tag_id: 5
+        tag: 'JQuery' 
+    },
+    {
+        id: 11,
+        name: 'Example3',
+        description: 'Blah x9',
+        thumbnail: 'http://qnimate.com/wp-content/uploads/2014/03/images2.jpg',
+        website: 'google.com',
+        github: 'github.com',
+        date_completed: '2015-09-09',
+        tag: 'Redux'
     },
 ]
 // Create the rootSaga generator function

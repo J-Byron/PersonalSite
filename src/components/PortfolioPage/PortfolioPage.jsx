@@ -7,6 +7,9 @@ import { withRouter } from 'react-router-dom';
 // *----------* Redux *----------*
 import { connect } from 'react-redux';
 
+// *----------* Components *----------*
+import PortfolioItem from '../PortfolioItem/PortfolioItem';
+
 // *----------* Material UI *----------*
 import { withStyles } from '@material-ui/core/styles';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
@@ -14,6 +17,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
+
 
 // *----------* Styling  *----------*
 const styles = theme => ({
@@ -44,10 +48,10 @@ const styles = theme => ({
 class PortfolioPage extends Component {
     render() {
         const { classes } = this.props;
-        const data = this.props.projects.map((project,i)=>{
+        const data = this.props.projects.map((information,i)=>{
             return(
                 <GridListTile key={i}>
-                    <img src={project.thumbnail}/>
+                    <PortfolioItem information={information}/>
                 </GridListTile>
             );
         })
