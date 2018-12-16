@@ -17,6 +17,8 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
+import HomeIcon from '@material-ui/icons/ArrowBackIos';
+import IconButton from '@material-ui/core/IconButton';
 
 
 // *----------* Styling  *----------*
@@ -47,16 +49,20 @@ const styles = theme => ({
 
 class PortfolioPage extends Component {
 
-    componentWillMount(){
-        this.props.dispatch({type: 'FETCH_PROJECTS'})
+    componentWillMount() {
+        this.props.dispatch({ type: 'FETCH_PROJECTS' })
+    }
+
+    gotoHome = () => {
+        this.props.history.push('/')
     }
 
     render() {
         const { classes } = this.props;
-        const data = this.props.projects.map((information,i)=>{
-            return(
+        const data = this.props.projects.map((information, i) => {
+            return (
                 <GridListTile key={i}>
-                    <PortfolioItem information={information}/>
+                    <PortfolioItem information={information} />
                 </GridListTile>
             );
         })
@@ -66,6 +72,13 @@ class PortfolioPage extends Component {
                 <Grid container className={classes.container} justify="center">
                     <Grid item>
                         <Paper className={classes.nav}>
+                            <IconButton
+                                aria-label="Close"
+                                onClick={this.gotoHome}
+                                style={{ margin: '16px 0px 0px 0px', color: '#00adb5'}}
+                            >
+                                <HomeIcon style={{width:30, height: 30}} />
+                            </IconButton>
                         </Paper>
                     </Grid>
                     <Grid item className={classes.content}>
