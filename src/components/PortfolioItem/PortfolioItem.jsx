@@ -3,6 +3,10 @@ import React, { Component } from 'react';
 
 // *----------* Material UI *----------*
 import { withStyles } from '@material-ui/core/styles';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardMedia from '@material-ui/core/CardMedia';
+import Card from '@material-ui/core/Card';
+
 
 // {
 //     id: 9,
@@ -52,7 +56,10 @@ const styles = theme => ({
         position: 'absolute',
         left: 0
     },
-
+    media: {
+        height: 150,
+        width: 150,
+    },
     website: {
         width: '100%',
         height: '33.333%',
@@ -62,7 +69,12 @@ const styles = theme => ({
 
     },
     dateCompleted: {
-
+        height: 20,
+        margin: '0px 10px 0px 380px',
+        paddingTop: 10,
+        fontFamily: 'Roboto',
+        fontSize: '15px',
+        color: '#AEADAD'
     },
     tag: {
         height: 20,
@@ -76,17 +88,33 @@ const styles = theme => ({
 });
 
 class PortfolioItem extends Component {
+
+    handleMediaClick = (gitUrl) => (event) =>{
+        window.open(gitUrl, '_blank');
+    }
+
     render() {
-        const {classes} = this.props;
+        const { classes } = this.props;
         const projectInfo = this.props.information;
         return (
-                <div className={classes.container}>
+            <div className={classes.container}>
 
-                    <p className={classes.name}> {projectInfo.name} </p>
-                    <p className={classes.tag}> {projectInfo.tag} </p>
-                    <img className={classes.thumbnail} src={projectInfo.thumbnail} alt='' />
-                    <p className={classes.description}> {projectInfo.description} </p>
-                </div>
+                <p className={classes.name}> {projectInfo.name} </p>
+                <p className={classes.tag}> {projectInfo.tag} </p>
+
+                <Card className={classes.thumbnail}>
+                    <CardActionArea>
+                        <CardMedia
+                            className={classes.media}
+                            image={projectInfo.thumbnail}
+                            onClick={this.handleMediaClick(projectInfo.github)}
+                        />
+                    </CardActionArea>
+                </Card>
+                {/* <img className={classes.thumbnail} src={projectInfo.thumbnail} alt='' /> */}
+                <p className={classes.description}> {projectInfo.description} </p>
+                <p className={classes.dateCompleted}>{projectInfo.date_completed}</p>
+            </div>
         );
     }
 }
