@@ -112,7 +112,7 @@ function* fetchProjects() {
 function* fetchTags() {
     try {
         // Get data from table
-        const tagResponse = yield call(Axios.get, '/tags');
+        const tagResponse = yield call(Axios.get, '/projects/tags');
         // update reduxStore with response from table
         yield dispatch({ type: 'SET_TAGS', payload: tagResponse.data })
     } catch (error) {
