@@ -34,7 +34,7 @@ const fakeData = [
         website: 'google.com',
         github: 'github.com',
         date_completed: '2015-09-09',
-        tag_id: 5
+        tag: 'JS'
     },
     {
         id: 10,
@@ -44,7 +44,7 @@ const fakeData = [
         website: 'google.com',
         github: 'github.com',
         date_completed: '2015-09-09',
-        tag_id: 5
+        tag: 'JQuery' 
     },
     {
         id: 11,
@@ -54,7 +54,7 @@ const fakeData = [
         website: 'google.com',
         github: 'github.com',
         date_completed: '2015-09-09',
-        tag_id: 6
+        tag: 'Redux'
     },
 ]
 // Create the rootSaga generator function

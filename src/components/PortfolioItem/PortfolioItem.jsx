@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 
 // *----------* Material UI *----------*
 import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import GridListTile from '@material-ui/core/GridListTile';
 
 // {
 //     id: 9,
@@ -37,12 +35,15 @@ const styles = theme => ({
     description: {
         height: 80,
         width: 380,
-        backgroundColor: 'blue',
+        backgroundColor: 'transparent',
         position: 'absolute',
         left: 160,
         top: 20,
         fontFamily: 'Roboto',
-        color: '#00adb5'
+        fontSize: '15px',
+        color: '#393e46',
+        textAlign: 'left',
+
     },
 
     thumbnail: {
@@ -64,7 +65,13 @@ const styles = theme => ({
 
     },
     tag: {
-
+        height: 20,
+        position: 'absolute',
+        left: 160,
+        top: 100,
+        fontFamily: 'Roboto',
+        fontSize: '15px',
+        color: '#AEADAD'
     }
 });
 
@@ -76,6 +83,7 @@ class PortfolioItem extends Component {
                 <div className={classes.container}>
 
                     <p className={classes.name}> {projectInfo.name} </p>
+                    <p className={classes.tag}> {projectInfo.tag} </p>
                     <img className={classes.thumbnail} src={projectInfo.thumbnail} alt='' />
                     <p className={classes.description}> {projectInfo.description} </p>
                 </div>
