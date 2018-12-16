@@ -44,7 +44,7 @@ const fakeData = [
         website: 'google.com',
         github: 'github.com',
         date_completed: '2015-09-09',
-        tag: 'JQuery' 
+        tag: 'JQuery'
     },
     {
         id: 11,
@@ -57,13 +57,14 @@ const fakeData = [
         tag: 'Redux'
     },
 ]
-// Create the rootSaga generator function
-function* rootSaga() {
 
-}
+
+
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
+
+// *----------* REDUX *----------*
 
 // Used to store projects returned from the server
 const projects = (state = fakeData, action) => {
@@ -94,6 +95,59 @@ const storeInstance = createStore(
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
 );
+
+// *----------* SAGAS *----------*
+
+function* fetchProjects() {
+    try {
+        // Get data from table
+        const projectResponse = yield call(Axios.get, '/projects');
+        // update reduxStore with response from table
+        yield dispatch({ type: 'SET_PROJECTS', payload: projectResponse.data })
+    } catch (error) {
+        console.log(`Error in fetchProjects: ${error}`);
+    }
+}
+
+function* fetchTags() {
+    try {
+        // Get data from table
+        const tagResponse = yield call(Axios.get, '/tags');
+        // update reduxStore with response from table
+        yield dispatch({ type: 'SET_TAGS', payload: tagResponse.data })
+    } catch (error) {
+        console.log(`Error in fetchProjects: ${error}`);
+    }
+}
+
+function* postProject(action) {
+    try {
+        console.log('Sending to projects: ', action.payload);
+        // send data to table
+        yield call(Axios.post, '/projects', action.payload);
+
+        // dispatch fetch to update reduxStore with new data in DB
+        yield dispatch({type: 'FETCH_PROJECTS'})
+
+    } catch (error) {
+        console.log(`Error in postProject: ${error}`);
+    }
+}
+
+
+
+
+// Create the rootSaga generator function
+function* rootSaga() {
+    // fetches projects from project table: fetch -> axios -> router -> DB -> router -> axios -> fetch -> projects
+    yield takeEvery('FETCH_PROJECTS', fetchProjects)
+
+    // fetches tags from tags table: fetch -> axios -> router -> DB -> router -> axios -> fetch -> tags
+    yield takeEvery('FETCH_TAGS', fetchTags)
+
+    // posts project to table: post -> axios -> router -> DB. post -> Fetch
+    yield takeEvery('POST_PROJECT', postProject)
+}
 
 // Pass rootSaga into our sagaMiddleware
 sagaMiddleware.run(rootSaga);
