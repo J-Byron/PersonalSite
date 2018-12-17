@@ -123,6 +123,7 @@ function* fetchTags() {
 function* postProject(action) {
     try {
         console.log('Sending to projects: ', action.payload);
+
         // send data to table
         yield call(Axios.post, '/projects', action.payload);
 
