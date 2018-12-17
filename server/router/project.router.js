@@ -44,7 +44,7 @@ router.post('/', (req, res) => {
     const project = req.body;
     const queryString = `INSERT INTO projects (name,description,github, thumbnail, website, date_completed ,tag_id ) VALUES ($1,$2,$3,$4,$5,$6,$7);`;
 
-    pool.query(queryString,[project.name,project.description, project.github, project.thumbnail, project.website, project.date_completed, project.tag_id])
+    pool.query(queryString,[project.name,project.description, project.github, project.thumbnail, project.website, project.date_completed, project.tag])
     .then(result => {
         res.sendStatus(201)
     })
@@ -56,7 +56,7 @@ router.post('/', (req, res) => {
 });
 
 router.get('/', (req, res) => {
-    const queryString = `SELECT projects.name, projects.description, projects.github, projects.thumbnail, projects.website, projects.date_completed, tags.name as tag
+    const queryString = `SELECT projects.id, projects.name, projects.description, projects.github, projects.thumbnail, projects.website, projects.date_completed , tags.name as tag
     FROM projects JOIN tags ON projects.tag_id = tags.id ORDER BY projects.date_completed DESC;`;
 
     pool.query(queryString).then(result=>{

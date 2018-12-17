@@ -123,6 +123,7 @@ function* fetchTags() {
 function* postProject(action) {
     try {
         console.log('Sending to projects: ', action.payload);
+
         // send data to table
         yield call(Axios.post, '/projects', action.payload);
 
@@ -131,6 +132,18 @@ function* postProject(action) {
 
     } catch (error) {
         console.log(`Error in postProject: ${error}`);
+    }
+}
+
+function* deleteProject(action){
+    try {
+        // send request param to delete
+        yield call(Axios.delete,`/projects/${action.payload}`)
+
+        // update reduxStore
+        yield dispatch({type: 'FETCH_PROJECTS'})
+    } catch (error) {
+        console.log(`Error in deleteProject: ${error}`);
     }
 }
 
@@ -144,6 +157,9 @@ function* rootSaga() {
 
     // posts project to table: post -> axios -> router -> DB. post -> Fetch
     yield takeEvery('POST_PROJECT', postProject)
+
+    // Deletes project from table: delete -> axios -> router -> DB. post -> fetch
+    yield takeEvery('DELETE_PROJECT',deleteProject);
 }
 
 // Pass rootSaga into our sagaMiddleware
