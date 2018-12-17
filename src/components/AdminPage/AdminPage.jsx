@@ -120,7 +120,7 @@ class AdminPage extends Component {
     }
 
     handleSubmit = () => {
-        // Finds location of tag in array of objects
+        // Finds location of tag in array of
         const findLocation = (name) =>{
             let index = 1;
             for(let val of this.props.tags){
@@ -142,6 +142,10 @@ class AdminPage extends Component {
             date_completed: '',
             tag: ''
         })
+    }
+
+    handleDeleteClick = (id) => (event) =>{
+        this.props.dispatch({type: 'DELETE_PROJECT', payload:id})
     }
 
     componentWillMount() {
@@ -263,7 +267,7 @@ class AdminPage extends Component {
                                                         {project.name}
                                                     </TableCell>
                                                     <TableCell style={{ textAlign: 'right' }} component="th" scope="row">
-                                                        <IconButton className={classes.button}>
+                                                        <IconButton onClick={this.handleDeleteClick(project.id)} className={classes.button}>
                                                             <Delete style={{ color: '#FE4365' }} />
                                                         </IconButton>
                                                     </TableCell>

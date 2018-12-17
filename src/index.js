@@ -135,6 +135,18 @@ function* postProject(action) {
     }
 }
 
+function* deleteProject(action){
+    try {
+        // send request param to delete
+        yield call(Axios.delete,`/projects/${action.payload}`)
+
+        // update reduxStore
+        yield dispatch({type: 'FETCH_PROJECTS'})
+    } catch (error) {
+        console.log(`Error in deleteProject: ${error}`);
+    }
+}
+
 // Create the rootSaga generator function
 function* rootSaga() {
     // fetches projects from project table: fetch -> axios -> router -> DB -> router -> axios -> fetch -> projects
@@ -145,6 +157,9 @@ function* rootSaga() {
 
     // posts project to table: post -> axios -> router -> DB. post -> Fetch
     yield takeEvery('POST_PROJECT', postProject)
+
+    // Deletes project from table: delete -> axios -> router -> DB. post -> fetch
+    yield takeEvery('DELETE_PROJECT',deleteProject);
 }
 
 // Pass rootSaga into our sagaMiddleware
